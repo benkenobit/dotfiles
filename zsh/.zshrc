@@ -62,6 +62,13 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 
+# Sourcing
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
 # Shell integrations
 eval "$(fzf --zsh)"
 

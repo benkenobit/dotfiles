@@ -1,12 +1,16 @@
 #========================#
 # Appearance and Theming #
 #========================#
-# Theme and font
-client.focused           #9aa5ce #16161d #c0caf5 #9aa5ce #9aa5ce
-client.focused_inactive  #16161d #16161d #c0caf5 #16161d #16161d
-client.unfocused         #16161d #16161d #c0caf5 #16161d #16161d
+# Start notifications
+exec mako
 
-font pango:JetBrainsMono Nerd Font 11
+# Theme and font
+client.focused          #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.focused_inactive #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.unfocused        #414868 #24283b #a9b1d6 #7dcfff   #414868
+client.urgent           #e0af68 #e0af68 #1d202f #7dcfff   #e0af68
+
+font pango:JetBrainsMono Nerd Font 13
 
 # Keyboard layout
 input * {
@@ -14,22 +18,15 @@ input * {
 }
 
 # Add gaps in between all application windows:
+gaps outer 5
 gaps inner 5
-gaps outer 1
-gaps top 1
-gaps bottom 1
-smart_gaps on
 
 # Configure the default border:
-for_window [class="^.*"] border pixel 3
-default_border pixel 3
-default_floating_border pixel 3
-
-# Hide borders at the edge of the screen
-hide_edge_borders smart
+default_border pixel 2
+titlebar_border_thickness 2
 
 # Set the Wallpaper:
-output * bg $HOME/.config/sway/wallpaper.png fill
+# output * bg $HOME/.config/sway/wallpaper.png fill
 
 #====================================#
 # Activate the panel                 #
@@ -55,16 +52,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
 
 # Screen locking (automatic, with a timeout)
-set $lock swaylock -c 16161d
 exec swayidle -w \
-    timeout 600 $lock \
-    timeout 570 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep $lock
-
-# Screen locking (manual)
-set $lock_screen exec sh ~/.config/sway/lock_screen.sh
-bindsym $mod+Escape exec $lock_screen
+          timeout 600 'swaylock -f' \
+          timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          before-sleep 'swaylock -f'
 
 #========================================#
 # Keyboard Shortcuts (Window Management) #
@@ -202,7 +193,7 @@ bindsym XF86MonBrightnessUp exec light -A 10
 # Keyboard Shortcuts (launching applications) #
 #=============================================#
 # Set up wofi to replace dmenu as the launcher of choice:
-set $menu wofi --show drun  -i | xargs swaymsg exec --
+set $menu wofi --hide-scroll | xargs swaymsg exec --
 
 # Launch your browser:
 bindsym $mod+shift+b exec firefox

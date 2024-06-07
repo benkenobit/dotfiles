@@ -1,11 +1,11 @@
+xoffset=710
+yoffset=275
 show=drun
-width=750
-height=400
+width=500
+height=500
 always_parse_args=true
-show_all=false
-term=kitty
-hide_scroll=true
+show_all=true
 print_command=true
+layer=overlay
 insensitive=true
 prompt=
-columns=2

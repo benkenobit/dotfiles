@@ -2,15 +2,9 @@
 # Appearance and Theming #
 #========================#
 # Theme and font
-include themes/macchiato
-
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+client.focused           #9aa5ce #16161d #c0caf5 #9aa5ce #9aa5ce
+client.focused_inactive  #16161d #16161d #c0caf5 #16161d #16161d
+client.unfocused         #16161d #16161d #c0caf5 #16161d #16161d
 
 font pango:JetBrainsMono Nerd Font 11
 
@@ -20,11 +14,19 @@ input * {
 }
 
 # Add gaps in between all application windows:
-gaps inner 8
-gaps outer 3
+gaps inner 5
+gaps outer 1
+gaps top 1
+gaps bottom 1
+smart_gaps on
 
 # Configure the default border:
-default_border pixel 2
+for_window [class="^.*"] border pixel 3
+default_border pixel 3
+default_floating_border pixel 3
+
+# Hide borders at the edge of the screen
+hide_edge_borders smart
 
 # Set the Wallpaper:
 output * bg $HOME/.config/sway/wallpaper.png fill
@@ -53,7 +55,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
 
 # Screen locking (automatic, with a timeout)
-set $lock swaylock -c 550000
+set $lock swaylock -c 16161d
 exec swayidle -w \
     timeout 600 $lock \
     timeout 570 'swaymsg "output * dpms off"' \
@@ -122,7 +124,7 @@ bindsym $mod+r mode "resize"
 #=================================#
 
 # Move between workspaces
-bindsym $mod+ampersand workspace 1
+bindsym $mod+ampersand workspace 1 
 bindsym $mod+eacute workspace 2
 bindsym $mod+quotedbl workspace 3
 bindsym $mod+apostrophe workspace 4

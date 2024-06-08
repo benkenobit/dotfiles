@@ -2,7 +2,7 @@
 # Appearance and Theming #
 #========================#
 # Start notifications
-exec mako
+# exec mako
 
 # Theme and font
 client.focused          #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
@@ -53,9 +53,9 @@ bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
 
 # Screen locking (automatic, with a timeout)
 exec swayidle -w \
-          timeout 600 'swaylock -f' \
+          timeout 600 'swaylock -f -c 414868' \
           timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f'
+          before-sleep 'swaylock -f -c 414848'
 
 #========================================#
 # Keyboard Shortcuts (Window Management) #
